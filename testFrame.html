@@ -1,0 +1,178 @@
+<link href="./frame.css" rel="stylesheet">
+<link href="./font.css" rel="stylesheet">
+<div class="ab-wrapper">
+    <header class="ab-main-header">
+        <div class="ab-header-wrapper">
+            <div class="ab-logo fourClick" style="display: flex;">
+                <img src="/resource/img/ceblogo.svg">
+                <div class="line"></div>
+                <span>智能柜台</span>
+            </div>
+            <div class="ab-network">
+                <span><img id='signal_img' src='/resource/img/signal/signal_green.png' style='height:65px;margin-left:310px;'/></span>
+            </div>
+            <div class="ab-date-wrapper">
+                <div class="ab-timeout">
+                    <span>超时倒计时<span class="ab-seconds">60</span>秒</span>
+                </div>
+                <div class="ab-time">
+                    <span class="ab-time-text"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="ab-main-content">
+        <aside class="ab-steps-container">
+            <div class="ab-steps" id='stepView'>
+                <!--这里自动生成-->
+            </div>
+        </aside>
+        <div class="ab-trades-container">
+            <div class="ab-trade">
+                <div class="ab-trade-title">
+                    <div class="ab-trade-title-wrapper">
+                        <span>${name!""}</span>
+                         <div class="ab-trade-title-controller">
+                            <button id="goHome" class="btn ab-goHome">
+                                <i class="icon icon-home"></i>
+                            		    结束服务
+                            </button>
+                            <button class="btn ab-askHelp" id='callManager'>
+                                <i class="icon icon-user"></i>
+                            		    呼叫大堂经理
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="ab-trade-content">
+                    <div class="ab-swiper-container ab-swiper" id='swiper'>
+                        <div class="swiper-container ab-swiper-container swiper-container-main">
+                            <div class="swiper-wrapper ab-swiper-wrapper">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type='text/javascript'>
+    $(function () {
+
+        domain.off('networkEvent');
+        domain.on("networkEvent", networkEvent);
+
+    	//呼叫大堂经理
+    	$('#callManager').click(function(){
+    		//播放声音
+    		domain.ajaxOpenService('/system/wav/036.mp3','get');
+    		/*domain.require('shell').then(cs=>{
+    			let mo = moment();
+	            let fileName = mo.year()+''+(mo.month()+1)+''+mo.date()+''+mo.hour()+''+mo.minutes()+''+mo.second();
+    			cs.captureScreen('c://captureScreen/'+fileName+".jpg").then(()=>{
+    				new $.zui.Messager('截屏成功',{icon:'bell',type:'success',placement:'center'}).show();
+    			});
+    		});*/
+    	});
+        //时间
+        let date = $(".ab-time-text");
+        let timeFun =function () {
+            let mo = moment();
+            let h = mo.hour();
+            let m = mo.minute();
+            let year = mo.year();
+            let month = mo.month() + 1;
+            let day = mo.date();
+            let ymd = year + '年' + month + "月" + day + "日";
+            if(m<10)
+            {
+            	m="0"+m;
+            }
+            if(h<10)
+            {
+            	h="0"+h;
+            }
+            date.text(ymd+" "+h + ":" + m);
+        };
+        timeFun.apply(this);
+        setInterval(timeFun, 1000);
+        //倒计时
+        let timeout =${timeout!"60"};
+        let fun = function () {
+            $(document).abIdle(timeout * 1000, 1000, 5000, function (data) {
+                let percent = data / 100;
+                let text = timeout - Math.round(timeout / 100 * data);
+                if (text < 10) {
+                    text = "0" + text;
+                }
+                $('.ab-seconds').text(text);
+            }).then(function () {
+                domain.callMethodPromise('goHome').then(function(){},function(){});
+            });
+        };
+        fun.apply(this);
+    });
+    
+    $("#goHome").click(function(){
+   		$("#goHome").attr("class","btn ab-goHome disabled");
+    	domain.callMethodPromise("goHome");
+    	setTimeout(function(){
+    		$("#goHome").attr("class","btn ab-goHome");
+    	},5000);
+    })
+    
+    let lockGoHome = function(){
+    	$("#goHome").attr("class","btn ab-goHome disabled");
+    } 
+    
+    let unlockGoHome = function(){
+    	$("#goHome").attr("class","btn ab-goHomes");
+    }
+
+    let networkEvent = function(param){
+        console.log(param);
+        let data = parseJSON(param);
+        if(data){
+            let type = data.type;
+            let code = data.code;
+            let info = data.info;
+            if("network" != type){
+                return;
+            }
+            /**code = -1;
+            let array = [0,1,2,3];
+            code = code + array[Math.floor(Math.random()*array.length)];
+            console.log(code);**/
+            let img = $('#signal_img');
+            if(0 == code){
+                img.attr("src","/resource/img/signal/signal_green.png");
+            }else if (1 == code) {
+                img.attr("src","/resource/img/signal/signal_yellow.png")
+            }else if (2 == code) {
+                img.attr("src","/resource/img/signal/signal_red.png")
+            }else if (-1 == code) {
+                img.attr("src","/resource/img/signal/signal_grey.png")
+            }
+        }
+    }
+
+    let parseJSON = function (param) {
+        if (typeof param == 'string') {
+            try {
+                var obj = JSON.parse(param);
+                if (typeof obj == 'object' && obj) {
+                    return obj;
+                } else {
+                    return false;
+                }
+            } catch (e) {
+                return false;
+            }
+        }
+        return false;
+    }
+    
+
+</script>

@@ -1,0 +1,258 @@
+@media screen and (min-width: 750px) {
+    html {
+        font-size: 50px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    html {
+        font-size: 80px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    html {
+        font-size: 100px;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    html {
+        font-size: 100px;
+    }
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #6b1685;
+    overflow-y: hidden;
+}
+
+.ab-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ab-main-header {
+    height: 1.1rem;
+    padding: 0.2rem 0.3rem 0 0.3rem;
+}
+
+.ab-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ab-header-wrapper .ab-logo img {
+    width: 4rem;
+    height: 0.5rem;
+}
+
+.ab-header-wrapper .ab-logo .line {
+    height: 0.5rem;
+    width: 0.03rem;
+    background: white;
+    margin: 0 0.2rem;
+}
+
+.ab-header-wrapper .ab-logo span {
+    color: white;
+    font-size: 0.38rem;
+}
+
+.ab-header-wrapper .ab-date-wrapper {
+    margin-top: -0.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: white;
+}
+
+.ab-header-wrapper .ab-date-wrapper .ab-time-text {
+    font-size: 0.22rem;
+}
+
+.ab-header-wrapper .ab-date-wrapper .ab-timeout span {
+    font-size: 0.32rem;
+}
+
+.ab-header-wrapper .ab-date-wrapper .ab-timeout .ab-seconds {
+    color: #E4A600;
+}
+
+.ab-main-content {
+    flex: 1;
+    display: flex;
+    background: #EDEDED;
+    width: 100%;
+    height: 100%;
+    min-height: 9.25rem;
+    padding: 2% 0 0;
+}
+
+.ab-main-content .ab-steps-container {
+    flex-basis: 20%;
+}
+
+.ab-main-content .ab-steps-container .ab-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.2rem;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-nav-circle {
+    width: 0.4rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.15rem;
+    color: #B7B7B7;
+    text-align: center;
+    box-sizing: content-box;
+    border: 1px solid #B7B7B7;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-nav-text {
+    height: 0.4rem;
+    line-height: 0.4rem;
+    display: inline-block;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-step {
+    display: flex;
+    margin-bottom: 0.5rem;
+    position: relative;
+    font-size: 0.2rem;
+    width: 100%;
+    height: 0.4rem;
+    margin-left: 1rem;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-step:not(:nth-child(1)):before {
+    position: absolute;
+    content: '';
+    left: 0.2rem;
+    width: 0.01rem;
+    height: 80%;
+    background: #B7B7B7;
+    top: -0.4rem;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-step.ab-active .ab-nav-circle {
+    background: #6B1685;
+    color:#ffffff;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-step.ab-active:before {
+    background: #6B1685;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-step.ab-over .ab-nav-circle {
+    border-color: #6B1685;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-step.ab-over:before {
+    background: #6B1685;
+}
+
+.ab-main-content .ab-steps-container .ab-steps .ab-step.ab-over .ab-nav-circle:before {
+    position: absolute;
+    content: '\e60d';
+    font-family: 'ZenIcon';
+    font-size: 0.22rem;
+    left: 0.1rem;
+    color: #6B1685;
+}
+
+.ab-main-content .ab-trades-container {
+    flex: 1;
+    padding: 0 2%;
+}
+
+.ab-main-content .ab-trades-container .ab-trade {
+    width: 100%;
+    height: 96%;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px rgba(128, 128, 128, 0.6);
+    background: #ffffff;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-title {
+    margin: 0 0.3rem;
+    border-bottom: 1px solid #BDC3CD;
+    line-height: 0.7rem;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-title .ab-trade-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-title .ab-trade-title-wrapper span {
+    color: #4C5574;
+    font-size: 0.28rem;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-title .ab-trade-title-wrapper .ab-trade-title-controller {
+    display: flex;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-title .ab-trade-title-wrapper .ab-trade-title-controller button {
+    outline: none;
+    background: transparent;
+    border: none;
+    font-size: 0.2rem;
+    border-bottom: 0.02rem solid #6b1685;
+    margin-left: 0.2rem;
+    border-radius: 0;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-title .ab-trade-title-wrapper .ab-trade-title-controller button:active {
+    outline: none;
+    background: transparent;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-title .ab-trade-title-wrapper .ab-trade-title-controller button span {
+    color: #353535;
+    display: block;
+    padding-left: 0.4rem;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-title .ab-trade-title-wrapper .ab-trade-title-controller button i {
+    font-size: 0.2rem;
+    color: #6b1685;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-content {
+    flex: 1;
+    padding: 0 0.3rem;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-content .ab-swiper-container {
+    height: 7.75rem;
+    width: 9.08rem;
+}
+
+.ab-main-content .ab-trades-container .ab-trade .ab-trade-content .ab-swiper-container .swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.ab-footer {
+    background: #EDEDED;
+    height: 0.4rem;
+}
+
+.ab-timeout {
+    margin-left: 0.2rem;
+}
+
+.ab-trade-title img {
+    width: 0.3rem;
+    float: left;
+}
