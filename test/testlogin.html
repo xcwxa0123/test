@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>测试注册</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body class="text-center">
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+
+        $(function(){
+            $('#progressLogin').hide();
+        });
+        $('#exampleModal').on('show.bs.modal', event => {
+            var button = $(event.relatedTarget);
+            var modal = $(this);
+        });
+        $('#checkButton').click(function(){
+            $('#checkButton').hide();
+            $('#checkDiv').show();
+            $('#checkDiv-span').text("测试计时");
+        });
+        $('#submitBtn').click(function(){
+            $('#progressLogin').show();
+            
+            var process = $('#progressLogin>div').attr("style");
+            var processArr = process.split(":");
+            var processNumAndHund = processArr[1];
+            var processNumArr = processNumAndHund.split("%");
+            var processNum = processNumArr[0];
+            var processName = processArr[0];
+
+            // alert(processNum+"_____"+processName);
+
+            // var loaddingTimer = setInterval=>(()=>{
+            //     while(processNum < 100){
+            //         <i class="fa fa-th-large" aria-hidden="true"></i>
+            //     }
+            // });
+            console.log("_______________________");
+            var testObj = document.getElementById("progressLogin");
+            console.log(Object.keys(testObj));
+
+            
+            
+        });
+    </script>
+    <style>
+        .form-login{
+            width: 250px;
+            margin: 7% auto;
+        }
+        body{
+            text-align: center;
+        }
+        input{
+            margin-top: 10px;
+        }
+        #checkInput{
+            width: 30%;
+            vertical-align: middle;
+            float: left;
+        }
+        #loginImg{
+            margin-bottom: 5%;
+            width: 40%;
+        }
+        #checkButton,
+        #checkDiv{
+            position: relative;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            visibility: visible;
+            text-align: center;
+        }
+        #checkDiv-span{
+            padding-left: 5px;
+            padding-top: 5px;
+            margin: 0 auto;
+        }
+        #checkDiv{
+            padding: 0 auto;
+        }
+        #progressLogin{
+            margin-top: 30px;
+        }
+    </style>
+</body>
+
+</html>
