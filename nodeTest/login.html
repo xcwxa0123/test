@@ -1,0 +1,339 @@
+.<html lang="zh-cn" class="screen-desktop-wide is-touchable device-desktop">
+
+<head>
+  <meta id="uuid" uuid="e81c3b1a-b88c-43dc-9e01-55d5e6a0c95a" hwnd="67088">
+  <meta charset="gbk">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./css/zui.css" rel="stylesheet" charset="gbk">
+  <link href="./lib/sweetalert2/sweetalert2.css" rel="stylesheet">
+  <link href="./lib/swiper/swiper.css" rel="stylesheet">
+  <link href="./lib/mobiscroll/mobiscroll.custom-2.17.0.min.css" rel="stylesheet">
+  <link href="./css/domain.css" rel="stylesheet">
+  <link href="./css/Trade.css" rel="stylesheet">
+  <link href="./css/numberPad.css" rel="stylesheet">
+  <link href="./css/animations.css" rel="stylesheet">
+  <link href="./css/pyKeyboard.css" rel="stylesheet">
+  <link href="./resource/css/Trade.css" rel="stylesheet">
+
+  <script src="./js/jquery.js" charset="gbk"></script>
+  <script src="./js/zui.js" charset="gbk"></script>
+  <script src="./lib/swiper/swiper.jquery.js"></script>
+  <script src="./lib/mobiscroll/mobiscroll.custom-2.17.0.min.js"></script>
+  <script src="./lib/sweetalert2/sweetalert2.js" charset="gbk"></script>
+  <script src="./lib/moment/moment.js"></script>
+  <script src="./lib/domain/accounting.js" type="text/javascript"></script>
+  <script src="./ab_resoureces/lib/util/html2canvas.min.js" type="text/javascript"></script>
+  <!--锟斤拷锟斤拷锟皆硷拷锟斤拷js-->
+  <script src="./ab_resoureces/lib/domain/util.jquery.js" charset="gbk"></script>
+  <script src="./ab_resoureces/lib/domain/policy.js" charset="gbk"></script>
+  <script src="./ab_resoureces/lib/domain/init.js" charset="gbk"></script>
+  <script src="./ab_resoureces/lib/domain/domain.js" charset="gbk"></script>
+  <script src="./ab_resoureces/lib/util/ClickSort.js" charset="gbk"></script>
+  <script src="./lib/handWriter/hw.js" charset="gbk"></script>
+</head>
+
+<body class="ceb">
+
+  <div class="ab-container">
+    <style type="text/css">
+      body {
+        background: url('./img/lockbg.jpg');
+        background-size: cover;
+      }
+
+      .loginForm {
+        padding: 20px;
+        background: #ffffff;
+        width: 400px;
+        height: 250px;
+        border-radius: 5px;
+      }
+
+      .ab-button.small {
+        min-width: 120px;
+      }
+    </style>
+    <link href="./css/animations.css" rel="stylesheet">
+    <div class="ab-wrapper">
+      <div class="ab-content">
+        <div class="loginForm">
+          <span class="ab-info">锟斤拷锟借备锟斤拷锟斤拷员锟斤拷录</span>
+
+          <div style="margin:40px 10px">
+            <span class="icon icon-2x icon-user">
+              <input class="ab-text" data-viewtype="number" id="tellerno" placeholder="锟斤拷锟斤拷锟斤拷锟皆憋拷锟??">
+            </span></div>
+          <div style="display:flex;justify-content:space-around;width:100%;">
+            <button class="ab-button small" data-target="html" data-method="submit">锟斤拷录</button>
+            <button class="ab-button small" id="restart">锟斤拷锟斤拷</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(function () {
+        loadGooglePinying();
+        clearCustomImage();
+      })
+      //锟斤拷锟节凤拷锟斤拷说锟斤拷每突锟斤拷锟??
+      let loadGooglePinying = function () {
+        domain.require("ime").then(ime => {
+          //锟斤拷锟斤拷锟斤拷锟诫法
+          ime.begin('锟饺革拷拼锟斤拷锟斤拷锟诫法 2.7').then(function (id) {
+            console.log('login锟斤拷锟斤拷锟斤拷锟诫法id为锟斤拷' + id);
+            ime.end();
+          }).catch(() => {
+            ime.end();
+          });
+        });
+      }
+
+      let clearCustomImage = function () {
+        const file = "chipImg,faceImg,idcard,signature";
+        domain.require('fs').then(fs => {
+          fs.deleteFile(file);
+        }).catch(() => {
+
+        })
+      }
+
+      $('#restart').click(function () {
+        domain.ajaxOpenService('/system/platform/restart', 'post');
+      });
+    </script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="glass" id="glass" style="display: none;">
+    <div class="ab-glass">
+      <svg class="ab-loading-svg" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="circle" class="g-circles g-circles--v3">
+          <circle id="12" transform="translate(35, 16.698730) rotate(-30) translate(-35, -16.698730) " cx="35"
+            cy="16.6987298" r="10"></circle>
+          <circle id="11" transform="translate(16.698730, 35) rotate(-60) translate(-16.698730, -35) " cx="16.6987298"
+            cy="35" r="10"></circle>
+          <circle id="10" transform="translate(10, 60) rotate(-90) translate(-10, -60) " cx="10" cy="60" r="10">
+          </circle>
+          <circle id="9" transform="translate(16.698730, 85) rotate(-120) translate(-16.698730, -85) " cx="16.6987298"
+            cy="85" r="10"></circle>
+          <circle id="8" transform="translate(35, 103.301270) rotate(-150) translate(-35, -103.301270) " cx="35"
+            cy="103.30127" r="10"></circle>
+          <circle id="7" cx="60" cy="110" r="10"></circle>
+          <circle id="6" transform="translate(85, 103.301270) rotate(-30) translate(-85, -103.301270) " cx="85"
+            cy="103.30127" r="10"></circle>
+          <circle id="5" transform="translate(103.301270, 85) rotate(-60) translate(-103.301270, -85) " cx="103.30127"
+            cy="85" r="10"></circle>
+          <circle id="4" transform="translate(110, 60) rotate(-90) translate(-110, -60) " cx="110" cy="60" r="10">
+          </circle>
+          <circle id="3" transform="translate(103.301270, 35) rotate(-120) translate(-103.301270, -35) " cx="103.30127"
+            cy="35" r="10"></circle>
+          <circle id="2" transform="translate(85, 16.698730) rotate(-150) translate(-85, -16.698730) " cx="85"
+            cy="16.6987298" r="10"></circle>
+          <circle id="1" cx="60" cy="10" r="10"></circle>
+        </g>
+      </svg>
+      <div>
+        <p id="glassContent" class="ab-glass-content"></p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .glassblank .ab-loading-svg {
+      opacity: 1;
+    }
+
+    .ab-loading-svg {
+      opacity: 0;
+      height: 120px;
+      width: 120px;
+      margin: 0 2em 2em;
+      overflow: visible;
+    }
+
+    .g-circles {
+      -webkit-transform: scale(0.9) translate(7px, 7px);
+      -ms-transform: scale(0.9) translate(7px, 7px);
+      transform: scale(0.9) translate(7px, 7px);
+    }
+
+    circle {
+      fill: dodgerblue;
+      fill-opacity: 0;
+      animation: opacity 1.2s linear infinite;
+    }
+
+    circle:nth-child(12n + 1) {
+      -webkit-animation-delay: -0.1s;
+      animation-delay: -0.1s;
+    }
+
+    circle:nth-child(12n + 2) {
+      -webkit-animation-delay: -0.2s;
+      animation-delay: -0.2s;
+    }
+
+    circle:nth-child(12n + 3) {
+      -webkit-animation-delay: -0.3s;
+      animation-delay: -0.3s;
+    }
+
+    circle:nth-child(12n + 4) {
+      -webkit-animation-delay: -0.4s;
+      animation-delay: -0.4s;
+    }
+
+    circle:nth-child(12n + 5) {
+      -webkit-animation-delay: -0.5s;
+      animation-delay: -0.5s;
+    }
+
+    circle:nth-child(12n + 6) {
+      -webkit-animation-delay: -0.6s;
+      animation-delay: -0.6s;
+    }
+
+    circle:nth-child(12n + 7) {
+      -webkit-animation-delay: -0.7s;
+      animation-delay: -0.7s;
+    }
+
+    circle:nth-child(12n + 8) {
+      -webkit-animation-delay: -0.8s;
+      animation-delay: -0.8s;
+    }
+
+    circle:nth-child(12n + 9) {
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
+
+    circle:nth-child(12n + 10) {
+      -webkit-animation-delay: -1s;
+      animation-delay: -1s;
+    }
+
+    circle:nth-child(12n + 11) {
+      -webkit-animation-delay: -1.1s;
+      animation-delay: -1.1s;
+    }
+
+    circle:nth-child(12n + 12) {
+      -webkit-animation-delay: -1.2s;
+      animation-delay: -1.2s;
+    }
+
+    .g-circles--v3 circle {
+      fill-opacity: 1;
+      animation-name: opacity, colors;
+    }
+
+    @keyframes opacity {
+      3% {
+        fill-opacity: 1;
+      }
+
+      75% {
+        fill-opacity: 0;
+      }
+    }
+
+    @keyframes colors {
+      0% {
+        fill: yellowgreen;
+      }
+
+      10% {
+        fill: gold;
+      }
+
+      75% {
+        fill: crimson;
+      }
+    }
+  </style>
+  <div class="glassLock" id="glassLock">
+    <div class="ab-glass">
+      <svg class="ab-loading-svg" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="circle" class="g-circles g-circles--v3">
+          <circle id="12" transform="translate(35, 16.698730) rotate(-30) translate(-35, -16.698730) " cx="35"
+            cy="16.6987298" r="10"></circle>
+          <circle id="11" transform="translate(16.698730, 35) rotate(-60) translate(-16.698730, -35) " cx="16.6987298"
+            cy="35" r="10"></circle>
+          <circle id="10" transform="translate(10, 60) rotate(-90) translate(-10, -60) " cx="10" cy="60" r="10">
+          </circle>
+          <circle id="9" transform="translate(16.698730, 85) rotate(-120) translate(-16.698730, -85) " cx="16.6987298"
+            cy="85" r="10"></circle>
+          <circle id="8" transform="translate(35, 103.301270) rotate(-150) translate(-35, -103.301270) " cx="35"
+            cy="103.30127" r="10"></circle>
+          <circle id="7" cx="60" cy="110" r="10"></circle>
+          <circle id="6" transform="translate(85, 103.301270) rotate(-30) translate(-85, -103.301270) " cx="85"
+            cy="103.30127" r="10"></circle>
+          <circle id="5" transform="translate(103.301270, 85) rotate(-60) translate(-103.301270, -85) " cx="103.30127"
+            cy="85" r="10"></circle>
+          <circle id="4" transform="translate(110, 60) rotate(-90) translate(-110, -60) " cx="110" cy="60" r="10">
+          </circle>
+          <circle id="3" transform="translate(103.301270, 35) rotate(-120) translate(-103.301270, -35) " cx="103.30127"
+            cy="35" r="10"></circle>
+          <circle id="2" transform="translate(85, 16.698730) rotate(-150) translate(-85, -16.698730) " cx="85"
+            cy="16.6987298" r="10"></circle>
+          <circle id="1" cx="60" cy="10" r="10"></circle>
+        </g>
+      </svg>
+      <div>
+        <p id="glassContent" class="ab-glass-content"></p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .glassLock {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      color: rgba(0, 0, 0, 0);
+    }
+
+    #glassLock .ab-loading-svg {
+      opacity: 0;
+      height: 120px;
+      width: 120px;
+      margin: 0 2em 2em;
+      overflow: visible;
+    }
+
+    #glassLock.show .ab-loading-svg {
+      opacity: 1;
+      animation: kzlopacity 5s linear;
+    }
+
+    @keyframes kzlopacity {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+
+</body>
+
+</html>
