@@ -135,8 +135,12 @@
     $(function(){
       spinFunc();
       frameDivMiss();
+      consoleTest();
     })
 
+    let consoleTest = ()=>{
+      console.log($('.loginMainDiv').offset());
+    }
 
     //var spinDiv = document.getElementsByClassName("leftFrame");
     let spinDiv = $(".spinDiv>div");
@@ -159,7 +163,7 @@
         border += 25;
       }
       
-      leftDiv.css({
+      leftDiv.css({ 
         "transition": "1s",
         "transform" : "rotate("+startDeg+"deg)",
         "width": border+"px",
