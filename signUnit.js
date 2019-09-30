@@ -1,29 +1,29 @@
-/*æ»‘å—*/
+/*»¬¿é*/
 let unlock = function(type){
-    console.log("æ‰§è¡Œäº†unlockæ–¹æ³•");
+    console.log("Ö´ĞĞÁËunlock·½·¨");
     let request = {};
     let unlock = {};
     request.device="lock"
     request.unlock = unlock;
     unlock.type= type;	
         let successFun = function(data){
-             console.log("ä¿å­˜ç”µå­ç­¾åç»“æœ:"+data);
+             console.log("±£´æµç×ÓÇ©Ãû½á¹û:"+data);
             let obj = eval('('+data+')');
             if("result" == obj.type && "true" == obj.result){
                 $('#myModal').modal('hide');
                 sign_close_forSubmit();
             }else{
                 if("error"==obj.type && "e1204" == obj.code){
-                    showInfo_warning("è¯·å®Œæˆç”µå­ç­¾å");
+                    showInfo_warning("ÇëÍê³Éµç×ÓÇ©Ãû");
                     return;
                 }else {
-                    errorHandler("ä¿å­˜ç”µå­ç­¾åå¤±è´¥,"+data,"ä¿å­˜ç”µå­ç­¾åå¤±è´¥");     
+                    errorHandler("±£´æµç×ÓÇ©ÃûÊ§°Ü,"+data,"±£´æµç×ÓÇ©ÃûÊ§°Ü");     
                 }
             }
         }       
         let failFun = function(err){
-            console.log("ä¿å­˜ç”µå­ç­¾åå¼‚å¸¸:"+err);
-            errorHandler("ä¿å­˜ç”µå­ç­¾åå¼‚å¸¸,"+err);
+            console.log("±£´æµç×ÓÇ©ÃûÒì³£:"+err);
+            errorHandler("±£´æµç×ÓÇ©ÃûÒì³£,"+err);
         }
         sign.save("png").then(successFun,failFun); 
 
@@ -31,8 +31,8 @@ let unlock = function(type){
 
 $(function () {  
     let slider_Branch = new SliderUnlock(".slideunlock-slider.branch", {
-        successLabelTip:"ç¡®è®¤ä¸­",
-        labelTip: "&gt;&nbsp;æ»‘åŠ¨ç¡®è®¤",
+        successLabelTip:"È·ÈÏÖĞ",
+        labelTip: "&gt;&nbsp;»¬¶¯È·ÈÏ",
         duration: 200   // 
     }, function () {
         unlock("branch");
@@ -51,7 +51,7 @@ $(function () {
 let domToCanvas = function(){
     html2canvas($("#pdfViewerDiv")[0]).then(canvas=>{
         let baseImgSuccess = function(result){
-            //å…ˆå»æ‰“å¼€æ¨¡æ€çª—
+            //ÏÈÈ¥´ò¿ªÄ£Ì¬´°
             let options = {
                 backdrop:false,
                 keyboard:false,
@@ -61,7 +61,7 @@ let domToCanvas = function(){
         }
 
         let baseImgFail = function(result){
-            showIsUserConfirm("ç”Ÿæˆä¿¡ç”¨å¡ç”³è¯·å£°æ˜å›¾ç‰‡å¤±è´¥,æ˜¯å¦é‡è¯•","domToCanvasç”Ÿæˆé—®å·å›¾ç‰‡å¤±è´¥,åŸå› æ˜¯:"+result,domToCanvas);
+            showIsUserConfirm("Éú³ÉĞÅÓÃ¿¨ÉêÇëÉùÃ÷Í¼Æ¬Ê§°Ü,ÊÇ·ñÖØÊÔ","domToCanvasÉú³ÉÎÊ¾íÍ¼Æ¬Ê§°Ü,Ô­ÒòÊÇ:"+result,domToCanvas);
         }
 
         let basePath = canvas.toDataURL('image/jpeg', '1.0');
@@ -80,24 +80,24 @@ let base64ToImg = function(basePath){
     });
 }
 
-//ä»¥ä¸Šéƒ½æ˜¯ç”Ÿæˆå›¾ç‰‡	
-//æ¨¡æ€çª—å®Œå…¨æ¸²æŸ“å®Œæˆ
+//ÒÔÉÏ¶¼ÊÇÉú³ÉÍ¼Æ¬	
+//Ä£Ì¬´°ÍêÈ«äÖÈ¾Íê³É
 $('#myModal').on('shown.zui.modal',function(){
     sign_open();
 });
 
 let sign_open = function (){
     let successFun = function(data){
-        console.log("æ‰“å¼€ç”µå­ç­¾åç»“æœ:"+data);
+        console.log("´ò¿ªµç×ÓÇ©Ãû½á¹û:"+data);
         let obj = eval('('+data+')');
         if("result" == obj.type && "true" == obj.result){}else{
-            console.log("æ‰“å¼€ç”µå­ç­¾åå¤±è´¥:"+data);
-            errorHandler("æ‰“å¼€ç”µå­ç­¾åå¤±è´¥,"+data,"æ‰“å¼€ç”µå­ç­¾åå¤±è´¥");
+            console.log("´ò¿ªµç×ÓÇ©ÃûÊ§°Ü:"+data);
+            errorHandler("´ò¿ªµç×ÓÇ©ÃûÊ§°Ü,"+data,"´ò¿ªµç×ÓÇ©ÃûÊ§°Ü");
         }
     }				
     let failFun = function(err){
-        console.log("æ‰“å¼€ç”µå­ç­¾åå¼‚å¸¸:"+err);
-        errorHandler("æ‰“å¼€ç”µå­ç­¾åå¼‚å¸¸,"+err,"æ‰“å¼€ç”µå­ç­¾åå¼‚å¸¸");
+        console.log("´ò¿ªµç×ÓÇ©ÃûÒì³£:"+err);
+        errorHandler("´ò¿ªµç×ÓÇ©ÃûÒì³£,"+err,"´ò¿ªµç×ÓÇ©ÃûÒì³£");
     }		
     let transparent = "0";
     let xSite = "468";
@@ -112,101 +112,101 @@ let background = "rgba(255,255,255,1)";
 
 $("#save").click(function(){
     let successFun = function(data){
-        console.log("ä¿å­˜ç”µå­ç­¾åç»“æœ:"+data);
+        console.log("±£´æµç×ÓÇ©Ãû½á¹û:"+data);
         let obj = eval('('+data+')');
         if("result" == obj.type && "true" == obj.result){
             $('#myModal').modal('hide');
             sign_close_forSubmit();
         }else{
             if("error"==obj.type && "e1204" == obj.code){
-                showInfo_warning("è¯·å®Œæˆç”µå­ç­¾å");
+                showInfo_warning("ÇëÍê³Éµç×ÓÇ©Ãû");
                 return;
             }else {
-                errorHandler("ä¿å­˜ç”µå­ç­¾åå¤±è´¥,"+data,"ä¿å­˜ç”µå­ç­¾åå¤±è´¥");     
+                errorHandler("±£´æµç×ÓÇ©ÃûÊ§°Ü,"+data,"±£´æµç×ÓÇ©ÃûÊ§°Ü");     
             }
         }
     }
 
     let failFun = function(err){
-        console.log("ä¿å­˜ç”µå­ç­¾åå¼‚å¸¸:"+err);
-        errorHandler("ä¿å­˜ç”µå­ç­¾åå¼‚å¸¸,"+err);
+        console.log("±£´æµç×ÓÇ©ÃûÒì³£:"+err);
+        errorHandler("±£´æµç×ÓÇ©ÃûÒì³£,"+err);
     }
     sign.save("png").then(successFun,failFun);
 })
 
-//æ­£å¸¸å…³é—­å¹¶ç»§ç»­æµç¨‹
+//Õı³£¹Ø±Õ²¢¼ÌĞøÁ÷³Ì
 let sign_close_forSubmit = function(){
     let successFun = function(data){
-        console.log("å…³é—­ç”µå­ç­¾åç»“æœ:"+data);
+        console.log("¹Ø±Õµç×ÓÇ©Ãû½á¹û:"+data);
         let obj = eval('('+data+')');
         if("result" == obj.type && "true" == obj.result){
             domain.callMethodPromise('pageSubmit');
         }else{
-            console.log("å…³é—­å¤±è´¥ï¼Œé‡è¯•1æ¬¡,"+data);
+            console.log("¹Ø±ÕÊ§°Ü£¬ÖØÊÔ1´Î,"+data);
             sign_close_forErr();
         }
     }
 
     let failFun = function(err){
-        console.log("å…³é—­ç”µå­ç­¾åå¼‚å¸¸:"+err);
-        console.log("å…³é—­å¤±è´¥ï¼Œé‡è¯•1æ¬¡");
+        console.log("¹Ø±Õµç×ÓÇ©ÃûÒì³£:"+err);
+        console.log("¹Ø±ÕÊ§°Ü£¬ÖØÊÔ1´Î");
         sign_close_forErr();
     }
 
     sign.close().then(successFun,failFun);
 }
 
-//å¼‚å¸¸å…³é—­ï¼Œå¹¶é‡è¯•
+//Òì³£¹Ø±Õ£¬²¢ÖØÊÔ
 let sign_close_forErr = function(){
     let successFun = function(data){
-        console.log("å…³é—­ç”µå­ç­¾åé‡è¯•ç»“æœ:"+data);
+        console.log("¹Ø±Õµç×ÓÇ©ÃûÖØÊÔ½á¹û:"+data);
         let obj = eval('('+data+')');
         if("result" == obj.type && "true" == obj.result){
             domain.callMethodPromise('pageSubmit');
         }else{
-            console.log("å…³é—­ç”µå­ç­¾åé‡è¯•å¤±è´¥:,"+data);
-            errorHandler("å…³é—­ç”µå­ç­¾åé‡è¯•å¤±è´¥:,"+data,"å…³é—­ç”µå­ç­¾åå¤±è´¥");      
+            console.log("¹Ø±Õµç×ÓÇ©ÃûÖØÊÔÊ§°Ü:,"+data);
+            errorHandler("¹Ø±Õµç×ÓÇ©ÃûÖØÊÔÊ§°Ü:,"+data,"¹Ø±Õµç×ÓÇ©ÃûÊ§°Ü");      
         }
     }
 
     let failFun = function(err){
-         console.log("é‡è¯•å…³é—­ç”µå­ç­¾åå¼‚å¸¸:"+err);
-         errorHandler("é‡è¯•å…³é—­ç”µå­ç­¾åå¼‚å¸¸:"+err);
+         console.log("ÖØÊÔ¹Ø±Õµç×ÓÇ©ÃûÒì³£:"+err);
+         errorHandler("ÖØÊÔ¹Ø±Õµç×ÓÇ©ÃûÒì³£:"+err);
     }
     sign.close().then(successFun,failFun);
 }
 
 $("#clean").click(function(){
     let successFun = function(data){
-        console.log("æ¸…é™¤ç­¾åç»“æœ:"+data);
+        console.log("Çå³ıÇ©Ãû½á¹û:"+data);
         let obj = eval('('+data+')');
         if("result" == obj.type && "true" == obj.result){}else{
-            console.log("å…³é—­ç”µå­ç­¾åé‡è¯•å¤±è´¥:,"+data);
-            errorHandler("æ¸…é™¤ç­¾åå¤±è´¥:"+data,"æ¸…é™¤ç­¾åå¤±è´¥");
+            console.log("¹Ø±Õµç×ÓÇ©ÃûÖØÊÔÊ§°Ü:,"+data);
+            errorHandler("Çå³ıÇ©ÃûÊ§°Ü:"+data,"Çå³ıÇ©ÃûÊ§°Ü");
         }
     }
 
     let failFun = function(err){
-        console.log("æ¸…é™¤ç­¾åå¼‚å¸¸:"+err);
-        errorHandler("æ¸…é™¤ç­¾åå¼‚å¸¸:"+err);
+        console.log("Çå³ıÇ©ÃûÒì³£:"+err);
+        errorHandler("Çå³ıÇ©ÃûÒì³£:"+err);
     }
     sign.clean().then(successFun,failFun);
 })
 
-//info å±•ç¤ºç»™å®¢æˆ·çš„ä¿¡æ¯  desc æ—¥å¿—è®°å½•çš„æè¿°ä¿¡æ¯
+//info Õ¹Ê¾¸ø¿Í»§µÄĞÅÏ¢  desc ÈÕÖ¾¼ÇÂ¼µÄÃèÊöĞÅÏ¢
 let showIsUserConfirm = function(info,desc,retry){
-    //å¼¹å‡ºæç¤ºçª—
-    domain.userConfirm("",info,"é‡è¯•","å–æ¶ˆ",true,retry,function(){
+    //µ¯³öÌáÊ¾´°
+    domain.userConfirm("",info,"ÖØÊÔ","È¡Ïû",true,retry,function(){
         recordLog(desc);
     });
 }
 
-//æœåŠ¡ç«¯è®°å½•ä¿¡æ¯
+//·şÎñ¶Ë¼ÇÂ¼ĞÅÏ¢
 let recordLog = function(desc){
     domain.callMethodPromise("recordLog",desc);
 }
 
-//æœåŠ¡ç«¯å¼‚å¸¸å¤„ç† 
+//·şÎñ¶ËÒì³£´¦Àí 
 let errorHandler = function(log,info){
     if(arguments.length == 1){
         domain.callMethodPromise("errorHandler",log,"");

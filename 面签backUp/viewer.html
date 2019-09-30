@@ -1,0 +1,258 @@
+<script src="/lib/pdf/pdf.js" type="text/javascript" charset="UTF-8"></script>
+<script src="/lib/pdf/pdf.worker.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	<#include "signature.js" >
+	<#include "jquery.slideunlock.js" >	
+</script>
+<style>
+	<#include "slideunlock.css">
+	<#include "signLayer.css">
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	.pdfViewer {
+		width: 840px;
+		height: 1188px;
+	}
+
+	.showpad {
+		text-align: center;
+		line-height: 3;
+	}
+
+	.showpad #showBoard {
+		text-align: center;
+		font-size: 20px;
+	}
+
+	.ceb .ab-controller-bar {
+		margin-bottom: 0px;
+	}
+
+	.ab-wrapper .ceb {
+		margin-bottom: 0px;
+		text-align: center;
+		align-items: center;
+	}
+
+	#controller {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	.msgBtn {
+		transform: translateY(-5px);
+	}
+
+	.msgContainer {
+		margin-top: 30px;
+	}
+
+	#submit {
+		margin-top: 80px;
+	}
+
+	.ab-info.margin {
+		font-size: 28px;
+	}
+
+	.ab-content {
+		text-align: center;
+		align-items: center;
+	}
+
+	.ab-body {
+		text-align: left;
+		align-items: left;
+	}
+
+	.ab-content .ab-text-title {
+		text-align: left;
+		align-items: left;
+	}
+
+	.my-button {
+		outline: none;
+		text-align: center;
+		box-shadow: none;
+		border: none;
+		color: #ffffff;
+		background: #AE41CF;
+		width: 200px;
+		height: 60px;
+		line-height: 60px;
+		border-radius: 4px;
+		font-size: 16px;
+		margin: 30px;
+	}
+
+
+	/*#modalWindow{
+        width: 300px;
+        height: 300px;
+        background-color: rgba(255,255,255,0.8);
+        background: url('./米字格.png') repeat;
+        opacity:0.5;
+    }*/
+</style>
+<div class="ab-wrapper">
+	<div class="ab-content">
+		<div style="display: flex;justify-content: space-around;">
+			<div class='pdfViewer' id="pdfViewerDiv">
+				<canvas id="the-canvas"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="ab-controller-bar" id="controller">
+		<div class="showpad">
+			<span id="showBoard"></span>
+		</div>
+		<div class="right_control">
+			<button class="btn btn-primary btn-lg" data-time='${time!"-1"}' id='submit'>${btnName!"我已知悉"}</button>
+		</div>
+	</div>
+</div>
+<#include "openLayer.ftl" >
+
+<!-- 界面相关script -->
+<script>
+	$(function () {
+		// If absolute URL from the remote server is provided, configure the CORS
+		// header on that server.
+		var url = '${pdf!""}';
+		PDFJS.workerSrc = '/lib/pdf/pdf.worker.js';
+		var pdfDoc = null,
+			pageNum = 1,
+			//			pageRendering = false,
+			pageNumPending = null,
+			numpages = 1,
+			scale = 297 / 210,
+			canvas = document.getElementById('the-canvas'),
+			ctx = canvas.getContext('2d');
+
+		PDFJS.getDocument(url).then(function (pdfDoc_) {
+			pdfDoc = pdfDoc_;
+			numPages = pdfDoc.numPages;
+			renderPage(pageNum);
+			//			$("#showBoard").text(pageNum + "/" + numPages);
+		});
+		/**
+		 * Get page info from document, resize canvas accordingly, and render page.
+		 * @param num Page number.
+		 */
+		function renderPage(num) {
+			//			pageRendering = true;
+			// Using promise to fetch the page
+			pdfDoc.getPage(num).then(function (page) {
+				var viewport = page.getViewport(scale);
+				canvas.height = 1188;
+				canvas.width = 840;
+				// Render PDF page into canvas context
+				var renderContext = {
+					canvasContext: ctx,
+					viewport: viewport
+				};
+				var renderTask = page.render(renderContext);
+
+				// Wait for rendering to finish
+				renderTask.promise.then(function () {
+					//					pageRendering = false;
+					if (pageNumPending !== null) {
+						// New page rendering is pending
+						renderPage(pageNumPending);
+						pageNumPending = null;
+					}
+				});
+				//				$("#showBoard").text(num + "/" + numPages);
+			});
+		}
+
+		/**
+		 * If another page rendering in progress, waits until the rendering is
+		 * finised. Otherwise, executes rendering immediately.
+		 */
+		//		function queueRenderPage(num) {
+		//			if(pageRendering) {
+		//				pageNumPending = num;
+		//			} else {
+		//				renderPage(num);
+		//			}
+		//		}
+
+		/**
+		 * Displays previous page.
+		 */
+		//		function onPrevPage() {
+		//			if(pageNum <= 1) {
+		//				return;
+		//			}
+		//			pageNum--;
+		//			queueRenderPage(pageNum);
+		//		}
+		//		document.getElementById('prev').addEventListener('click', onPrevPage);
+		//
+		//		/**
+		//		 * Displays next page.
+		//		 */
+		//		function onNextPage() {
+		//			if(pageNum >= pdfDoc.numPages) {
+		//				return;
+		//			}
+		//			pageNum++;
+		//			queueRenderPage(pageNum);
+		//		}
+		//		document.getElementById('next').addEventListener('click', onNextPage);
+
+		/**
+		 * Asynchronously downloads PDF.
+		 */
+	});
+</script>
+
+<!-- 电子签名相关script -->
+<script>
+        //调用电子签名界面相关按钮设置
+        $(function () {
+                let submit = $('#submit');
+                let canvasArea = $('#pdfViewerDiv');
+                let name = submit.text();
+                let time = submit.data('time');
+                if (time > 0) {
+                        time = time * 1000;
+                        submit.attr('disabled', true);
+                        let cycle = setInterval(function () {
+                                //发送事件
+                                domain.emit('notIdle');
+                                time -= 1000;
+                                if (time <= 0) {
+                                        clearInterval(cycle);
+                                        submit.text(name);
+                                        submit.removeAttr('disabled');
+                                } else {
+                                        submit.text(name + '(' + (time / 1000) + ')');
+                                }
+                        }, 1000);
+				};
+				let frameCoordinate = {
+					"transparent":"0",
+					"xSite":"477",
+					"ySite":"435",
+					"height":"303",
+					"width":"570",
+					"title":"",
+					"desc":"",
+				};
+                configJSign(submit, canvasArea, frameCoordinate, "");//设置签名框参数，并给submit按钮赋予click方法
+//              $("#disagree").click(function(){
+//                      domain.callMethodPromise('reject');
+//              });
+//              $("#submit").click(function(){
+//                      domain.callMethodPromise('submit');
+//              });
+        });
+</script>

@@ -1,0 +1,124 @@
+#myModal{
+    background-color: rgba(255,255,255,0.7);
+}
+.modal-dialog{
+    background-color: rgba(255,255,255,0);
+}
+.modal-header{
+    border:0px;
+    background-color: rgba(255,255,255,0.2);
+}
+.modal-title-type{
+    font-size: 20px;
+    font-weight: 600;
+    color:crimson;
+}
+.modal-body{
+    /*border:1px solid rgb(000,000,000,1);*/
+    width: 570px;
+    margin-left: 15px;
+    height: 305px;
+    /*background-color: rgba(255,255,255,0.3);*/
+    background: rgba(255,255,255,1) url('/resource/img/米字格.png') repeat;
+}
+
+.modal-footer{
+    border:0px;
+    background-color: rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.tab-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.btn.btn-primary{
+    background-color:#6b1685
+}
+
+        /*滑块样式*/
+body{
+    padding:0 0;
+}
+
+.slideunlock-wrapper{
+    background:rgba(255, 255, 255, .15);
+    width: 220px;
+    padding: 1px;
+}
+.slideunlock-slider{
+    background-color:#E8CCFF;
+    height: 45px;
+    text-align: center;
+}
+.slideunlock-slider.success{
+    background-color:#E8CCFF;
+    padding: 11px;
+}
+.btn-warning {
+    background-color:#AE41CF;
+    border-color:#AE41CF;
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open .dropdown-toggle.btn-warning{
+    background-color:#AE41CF;
+    border-color:#AE41CF;
+}
+
+.slideunlock-slider.branch{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideunlock-label{
+    background-color:#AE41CF;
+    color: #fff;
+    /*line-height: 41px;*/
+    border:1px solid #ccc;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*文字样式*/
+.slideunlock-lable-tip{
+    font-size:15px;
+    text-align:center;
+    -webkit-background-clip: text;/*按文字裁剪*/
+    -webkit-text-fill-color: transparent;/*文字的颜色使用背景色*/
+    background-color: #AE41CF;/*设置一个背景色*/
+    background-image: -webkit-linear-gradient(-45deg,rgba(0,0,0,0.6)30%,#aff0ff 50%,rgba(0,0,0,0.6)70%);/*设置渐变背景，按对角线渐变*/
+    background-blend-mode: hard-light;/*设置背景为混合模式下的强光模式*/
+    background-size: 200%;
+    -webkit-animation: shine 4s infinite;/*给背景添加动画改变位置*/
+    /*position: fixed;*/
+    position: relative;
+    /*bottom:380px;
+    left:400px;*/
+}
+@-webkit-keyframes shine{
+    from{background-position: 100%;}
+    to{background-position: 0;}
+}
+
+/*重写按钮*/
+.my-button-small{
+    outline: none;
+    text-align: center;
+    box-shadow: none;
+    border: none;
+    color: #ffffff;
+    background: #AE41CF;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    /*margin: 15px;*/
+    margin-right:15px 0;
+}
