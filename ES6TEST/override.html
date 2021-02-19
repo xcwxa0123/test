@@ -18,16 +18,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <div class="testDIV">
+    <div class="list testDIV">
         这是一条之前的信息
     </div>
-    <div class="moduleDIV">
-
+    <div class="list moduleDIV">
+        这是一条新信息
     </div>
     <script>
         let transpation = 1;
         $('.moduleDIV').css("background",`rgba(111,111,111,${transpation})`);
 
+        $('.list').on('click',this,function(){
+            console.log($(this).text().trim());
+        });
 
         let fn = function(){
             if(true){
@@ -41,6 +44,10 @@
           width: 800px;
           height: 300px;
           background: red;
+          margin: 0 25px;
+          border-width: 3px;
+          border-style: solid;
+          border-color: #FFF;
       }
       .moduleDIV{
           width: 300px;

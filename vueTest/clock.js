@@ -1,2 +1,1 @@
-var clock = document.getElementById("text");
-      console.log(clock);
+let clock = document.createElement("canvas");
